@@ -16,7 +16,7 @@ import { JwtService } from '@nestjs/jwt';
       port: 3306,
       username: 'root',
       password: 'Your_new_P@ssword123',
-      database: 'users',
+      database: 'auth_users',
       autoLoadEntities: true,
       synchronize: true,
     }),
