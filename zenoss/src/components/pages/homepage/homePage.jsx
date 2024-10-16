@@ -7,7 +7,11 @@ const HomePage = () => {
         <div className="home">
             <h1>Hello to app</h1> 
             <Link to="/auth" className="card">
-                auth
+                Auth
+            </Link>
+
+            <Link to="/users" className="card">
+                Users-Table
             </Link>
         </div>
     );

@@ -30,4 +30,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
   }
+
+  async findAllUsers(): Promise<User[]> {
+    const users = await this.userRepository.find();
+    console.log('users found:', users);
+    return users; 
+  }
 }

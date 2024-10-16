@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import "./auth.css";
 
 const AuthForm = () => {
@@ -7,19 +8,22 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null); 
   const [success, setSuccess] = useState(null); 
-  const [isSignUp, setIsSignUp] = useState(false); 
+  const [isSignUp, setIsSignUp] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleSubmitSignin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8081/auth/signin', {
+      const response = await axios.post('http://localhost:8080/auth/signin', {
         username,
         password,
       });
-      console.log('Access Token:', response.data.accessToken);
+      console.log('Access Token:', response.data.accessToken); // в prod версии надо будет убрать эту строку
       setSuccess('Logged in successfully!');
       setError(null);
+      alert('Sined in')
+      navigate('/')
     } catch (error) {
       console.error('Error during signin:', error.response?.data || error.message);
       setError('Error during signin: ' + (error.response?.data?.message || error.message));
@@ -31,7 +35,7 @@ const AuthForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8081/auth/signup', { // Correct endpoint for signup
+      const response = await axios.post('http://localhost:8080/auth/signup', { // Correct endpoint for signup
         username,
         password,
       });

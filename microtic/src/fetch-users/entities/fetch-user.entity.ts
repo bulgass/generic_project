@@ -1,13 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('auth_users')
+@Entity('auth_users')  
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column()
   username: string;
 
   @Column()
-  password: string;
+  email: string;
+
+  @Column()
+  createdAt: Date;
 }
