@@ -5,11 +5,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: true,
-  },
-  build: {
-    rollupOptions: {
-      input: 'index.html',
+    proxy: {
+      '/auth': {
+        target: 'http://localhost:8080', 
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/auth/, '/auth'),
+      },
     },
   },
 })

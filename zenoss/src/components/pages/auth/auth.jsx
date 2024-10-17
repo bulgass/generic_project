@@ -15,15 +15,15 @@ const AuthForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/signin', {
+      // Now using the proxy endpoint (no need to specify http://localhost:8080)
+      const response = await axios.post('/auth/signin', {
         username,
         password,
       });
-      console.log('Access Token:', response.data.accessToken); // в prod версии надо будет убрать эту строку
+      console.log('Access Token:', response.data.accessToken);
       setSuccess('Logged in successfully!');
       setError(null);
-      alert('Sined in')
-      navigate('/')
+      navigate('/');
     } catch (error) {
       console.error('Error during signin:', error.response?.data || error.message);
       setError('Error during signin: ' + (error.response?.data?.message || error.message));
@@ -35,7 +35,7 @@ const AuthForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/signup', { // Correct endpoint for signup
+      const response = await axios.post('/auth/signup', {
         username,
         password,
       });
